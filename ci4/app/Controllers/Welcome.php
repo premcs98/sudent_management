@@ -7,6 +7,6 @@ class Welcome extends Controller
 {
     public function index()
     {
-        echo view('myview');
+        echo view('stud/myview');
     }
 }

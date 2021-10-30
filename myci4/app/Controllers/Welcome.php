@@ -17,4 +17,13 @@ class Welcome extends Controller
     {
         return view ('stud/login');
     }
+    public function save()
+    {
+        $db =\config\Database::connect();
+        $query = $db->query("INSERT INTO test(user_name, email,new_password,confirm_password)
+        VALUES ('user_name','email','new_password','confirm_password');");
+        $result=$query->getResult();
+        print_r($result);
+    } 
 }
+?>

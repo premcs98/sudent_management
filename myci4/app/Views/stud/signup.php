@@ -1,5 +1,5 @@
-<?php 
-    include("myview.php");
+<?php
+include("myview.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,15 +18,15 @@
             input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden"
             data-parsley-trigger="keyup" data-parsley-validate>
             <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="username" class="text-secondary col-sm-2 col-form-label">USER NAME *</label>
+                <label for="user_name" class="text-secondary col-sm-2 col-form-label">USER NAME *</label>
                 <div class="col-sm-5">
-                    <input id="username" class="form-control" name="username" type="text"
+                    <input id="user_name" class="form-control" name="user_name" type="text"
                         data-parsley-minlength="3"
                         data-parsley-maxlength="25"
-                        data-parsley-errors-container=".errorspanusername"
+                        data-parsley-errors-container=".errorspanuser_name"
                         data-parsley-required-message="Please enter the username."
                         data-parsley-required />
-                    <span class="errorspanusername"></span> 
+                    <span class="errorspanuser_name"></span> 
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">
@@ -40,9 +40,9 @@
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="password1" class="text-secondary col-sm-2 col-form-label">New Password *</label>
+                <label for="new_password" class="text-secondary col-sm-2 col-form-label">New Password *</label>
                 <div class="col-sm-5">
-                    <input id="password1" class="form-control" name="password" type="password" class="password"
+                    <input id="new_password1" class="form-control" name="new_password" type="password" class="new_password"
                         data-parsley-minlength="8"
                         data-parsley-errors-container=".errorspannewpassinput"
                         data-parsley-required-message="Please enter your new password."
@@ -55,67 +55,19 @@
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 mb-5 ">
-                <label for="confirm_password1" class="text-secondary col-sm-2 col-form-label">Confirm Password *</label>
+                <label for="confirm_password" class="text-secondary col-sm-2 col-form-label">Confirm Password *</label>
                 <div class="col-sm-5">
-                    <input name="Password_2" class="form-control" id="password2" type="password" class="password"
+                    <input name="confirm_Password" class="form-control" id="confirm_password" type="password" class="new_password"
                         data-parsley-minlength="8"
                         data-parsley-errors-container=".errorspanconfirmnewpassinput"
                         data-parsley-required-message="Please re-enter your new password."
-                        data-parsley-equalto="#password1"
                         data-parsley-required />
                     <span class="errorspanconfirmnewpassinput"></span>
                 </div>
             </div>
-            <input type="submit" name="submitinfo" id="submitsignup" alt="Sign Up Now" value="Submit" class="justify-contetnt-center btn btn-primary" />
+            <input type="submit" name="submitinfo" id="submitsignup" src="<?php echo base_url('Welcome\save')?>"alt="Sign Up Now" value="Submit" class="justify-contetnt-center btn btn-primary" />
         </form>
     </div>
 </body>
-    <script>
-        window.Parsley.addValidator('minlength','maxlength',{
-
-        }   )
-        window.Parsley.addValidator('uppercase', {
-        requirementType: 'number',
-        validateString: function(value, requirement) {
-        var uppercases = value.match(/[A-Z]/g) || [];
-        return uppercases.length >= requirement;
-        },
-        messages: {
-                    en: 'Your password must contain at least (%s) uppercase letter.'
-                }
-        });
-
-        window.Parsley.addValidator('lowercase', {
-        requirementType: 'number',
-        validateString: function(value, requirement) {
-        var lowecases = value.match(/[a-z]/g) || [];
-        return lowecases.length >= requirement;
-        },
-        messages: {
-                    en: 'Your password must contain at least (%s) lowercase letter.'
-                 }
-        });
-
-        window.Parsley.addValidator('number', {
-        requirementType: 'number',
-        validateString: function(value, requirement) {
-        var numbers = value.match(/[0-9]/g) || [];
-        return numbers.length >= requirement;
-        },
-        messages: {
-                    en: 'Your password must contain at least (%s) number.'
-                }
-        });
-
-        window.Parsley.addValidator('special', {
-        requirementType: 'number',
-        validateString: function(value, requirement) {
-        var specials = value.match(/[^a-zA-Z0-9]/g) || [];
-        return specials.length >= requirement;
-        },
-         messages: {
-                        en: 'Your password must contain at least (%s) special characters.'
-                }
-        });
-    </script>
+   
 </html>

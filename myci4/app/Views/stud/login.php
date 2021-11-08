@@ -15,7 +15,7 @@
 <body>
 <div class="container-fluid bg-white text-nowrap text-center p-3 pt-3 mb-1 ">
   <h2>LOGIN</h2>
-    <form  id="form" data-parsley-validate="">
+    <form >
         <div class=" d-flex justify-content-center form-group mt-5 ">
             <label for="username" class="text-secondary col-sm-2 col-form-label">USER NAME:</label>
             <div class="col-sm-5 max-auto">
@@ -43,7 +43,4 @@
     </form>
 </div>
 </body>
-<script>
-    $('#form').parsley();
-</script>
 </html>

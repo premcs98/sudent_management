@@ -20,6 +20,7 @@ include("myview.php");
                 <label for="user_name" class="text-secondary col-sm-2 col-form-label">USER NAME *</label>
                 <div class="col-sm-5">
                     <input id="user_name" class="form-control" name="user_name" type="text" placeholder="User_Name"/> 
+                    <span class="text_danger"><?= $validation->listError($validation,'user_name')?></span>
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">

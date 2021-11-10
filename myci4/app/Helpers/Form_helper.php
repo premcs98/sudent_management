@@ -1,5 +1,6 @@
 <?php
-    function display_error($validaion,$field)
+    namespace APP\Helpers;
+    function display_error($validation,$field)
     {
         if($validation->hasError($field))
         {

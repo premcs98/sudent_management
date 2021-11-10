@@ -3,13 +3,12 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use APP\Models\StudentModel;
-use CodeIgniter\HTTP\RequestInterface;
+use App\Libraries\Hash;
 class Welcome extends Controller
 {
-    protected $mRequest;
     public function __construct()
     {
-        $this->mRequest = service("request");
+        helper(['url','form']);
     }
     public function index()
     {
@@ -21,7 +20,14 @@ class Welcome extends Controller
     }
     public function save()
     {
-
+        $validation =  \Config\Services::validation();
+        $validation->setRules([
+            'user_name' => ['label' => 'user_name', 'rules' => 'required'],
+            'email' => ['label' => 'email', 'rules' => 'required'],
+            'new_password' => ['label' => 'new_password', 'rules' => 'required|min_length[05]'],
+            'confirm_password' => ['label' => 'confirm_password', 'rules' => 'required|min_length[05]|maches[password]'],
+        ]);
+        
         $user_name =$this->request->getPost('user_name');
         $email =$this->request->getPost('email');
         $new_password =$this->request->getPost('new_password');
@@ -29,7 +35,7 @@ class Welcome extends Controller
         $values=[
                     'user_name'=>$user_name,
                     'email'=>$email,
-                    'new__password'=>$new_password,
+                    'new_password'=>Hash::make($new_password),
                     'confirm_password'=>$confirm_password,
         ];
         $studentModel= new \App\Models\StudentModel();
@@ -38,6 +44,48 @@ class Welcome extends Controller
     public function login()
     {
         return view ('stud/login');
+    }
+    public function check()
+    {
+        $validation = $this->validate(
+        [
+            'user_name'=>
+            [
+                'rules'=>'required|valid_user_name|is_not_unique[test.user_name]',
+                'errors'=>
+                        [
+                            'required'=>'user_name is required',
+                            'valid_user_name'=>'Enter the valid user_name',
+                            'is_not_unique'=>'this user_name is not registered'
+                        ]
+            ],
+            'password'=>
+                [
+                            'rules'=>'required',
+                            'errors'=>
+                            [
+                                'required'=>'Password is required'
+                            ]
+                ]
+        ]);
+        if(!$validation){
+                    return view('/welcome',['validation'->this->validator]);
+        }
+        else
+        {
+            echo'validated sucessfully';
+        }
+        $user_name =$this->request->getPost('user_name');
+        $new_password = $this->request->getPost('new_password');
+        $studentModel = new \App\Models\StudentModel();
+        $user_info = $studentModel->where('user_name',$user_name,)->first();
+        $check_password = Hash::check($new_password,$user_info['new_password']);
+
+        if(!$check_password)
+        {
+            session()->setFlashdata('fail','Incorrect password');
+            return redirect()->to('/welcome')->withInput();
+        }
     }
 }
 ?>

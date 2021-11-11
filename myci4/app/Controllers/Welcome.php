@@ -20,26 +20,36 @@ class Welcome extends Controller
     }
     public function save()
     {
-        $validation =  \Config\Services::validation();
-        $validation->setRules([
-            'user_name' => ['label' => 'user_name', 'rules' => 'required'],
-            'email' => ['label' => 'email', 'rules' => 'required'],
-            'new_password' => ['label' => 'new_password', 'rules' => 'required|min_length[05]'],
-            'confirm_password' => ['label' => 'confirm_password', 'rules' => 'required|min_length[05]|maches[password]'],
-        ]);
+        helper(['form']);
+        $data =[];
+       if($this->request->getMethod()=='post')
+       {
         
-        $user_name =$this->request->getPost('user_name');
-        $email =$this->request->getPost('email');
-        $new_password =$this->request->getPost('new_password');
-        $confirm_password =$this->request->getPost('confirm_password');
-        $values=[
-                    'user_name'=>$user_name,
-                    'email'=>$email,
-                    'new_password'=>Hash::make($new_password),
-                    'confirm_password'=>$confirm_password,
+        $rules = 
+        [
+            'user_name'=>'required'
         ];
-        $studentModel= new \App\Models\StudentModel();
-        $query= $studentModel->insert($values);
+            if($this->validate($rules))
+            {
+                $user_name =$this->request->getPost('user_name');
+                $email =$this->request->getPost('email');
+                $new_password =$this->request->getPost('new_password');
+                $confirm_password =$this->request->getPost('confirm_password');
+                $values=
+                    [
+                        'user_name'=>$user_name,
+                        'email'=>$email,
+                        'new_password'=>Hash::make($new_password),
+                        'confirm_password'=>$confirm_password,
+                    ];
+                $studentModel= new \App\Models\StudentModel();
+                $query= $studentModel->insert($values);
+            }
+            else
+            {
+                return redirect()->to('signup')->withInput()->with('errors', $this->validator->getErrors());
+            }
+       }
     }
     public function login()
     {

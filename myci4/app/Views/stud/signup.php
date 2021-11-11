@@ -14,13 +14,17 @@ include("myview.php");
 <body>
     <div class="container-fluid bg-white text-nowrap text-center p-3 pt-3 mb-1 ">
         <h2>SIGN UP</h2>
+        <?php if(isset($validation))?>
+            <div class='text-danger'>
+                <?= $validation->listErrors()?>
+            </div>
         <form action="<?= base_url('welcome/save')?>" method="post">
         <?= csrf_field(); ?>
             <div class=" d-flex justify-content-center form-group mt-5 ">
                 <label for="user_name" class="text-secondary col-sm-2 col-form-label">USER NAME *</label>
                 <div class="col-sm-5">
                     <input id="user_name" class="form-control" name="user_name" type="text" placeholder="User_Name"/> 
-                    <span class="text_danger"><?= $validation->listError($validation,'user_name')?></span>
+
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">
@@ -41,7 +45,7 @@ include("myview.php");
                     <input name="confirm_password" class="form-control" id="confirm_password" type="password" placeholder="Confirm-Password"/>
                 </div>
             </div>
-            <input type="submit" name="submitinfo" id="submitsignup" src="<?= base_url('Welcome\save')?>"alt="Sign Up Now" value="Submit" class="justify-contetnt-center btn btn-primary" />
+            <input type="submit" name="submitinfo" id="submitsignup" src="<?= base_url('Welcome/save')?>"alt="Sign Up Now" value="Submit" class="justify-contetnt-center btn btn-primary" />
         </form>
     </div>
 </body>

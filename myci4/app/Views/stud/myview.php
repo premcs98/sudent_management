@@ -17,7 +17,7 @@
     <div class="container-fluid bg-primary text-white text-center p-3 pt-3 mb-1">
         <h1>STUDENT MANAGEMENT</h1>          
     </div>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 pt-3 mt-1">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 pt-3 mt-1">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Brand</a>
         
@@ -40,7 +40,7 @@
             </ul>
         </div>
     </div>
-    </nav>
-  
+  </nav>
   </body>
+</head>
 </html>

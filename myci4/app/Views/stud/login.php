@@ -18,8 +18,6 @@
     <form action="<?= base_url('Welcome/check')?>" method="post" >
     <?= csrf_field(); ?>
     <?php if(!empty(session()->getFlashdata('fail')))?>
-    <div class="alert alert-danger"><?=session()->getFlashdata('fail'); ?></div>
-
         <div class=" d-flex justify-content-center form-group mt-5 ">
             <label for="user_name" class="text-secondary col-sm-2 col-form-label">USER NAME:</label>
             <div class="col-sm-5 max-auto">

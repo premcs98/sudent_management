@@ -27,7 +27,10 @@ class Welcome extends Controller
         
         $rules = 
         [
-            'user_name'=>'required'
+            'user_name'=>'required',
+            'email'=>'required|valid_email|is_unique[test.email]',
+            'new_password'=>'required',
+            'confirm_password'=>'required|matches[new_password]'
         ];
             if($this->validate($rules))
             {
@@ -47,7 +50,8 @@ class Welcome extends Controller
             }
             else
             {
-                return redirect()->to('signup')->withInput()->with('errors', $this->validator->getErrors());
+                $data['validation']=$this->validator;
+                echo view('stud/signup',$data);
             }
        }
     }
@@ -56,7 +60,8 @@ class Welcome extends Controller
         return view ('stud/login');
     }
     public function check()
-    {
+    {   
+        $session = session();
         $validation = $this->validate(
         [
             'user_name'=>
@@ -79,7 +84,7 @@ class Welcome extends Controller
                 ]
         ]);
         if(!$validation){
-                    return view('/welcome',['validation'->this->validator]);
+                    return view('stud/login',['validation'->this->validator]);
         }
         else
         {

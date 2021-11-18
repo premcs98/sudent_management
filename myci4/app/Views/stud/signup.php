@@ -66,5 +66,4 @@ include("myview.php");
         </form>
     </div>
 </body>
-   
 </html>

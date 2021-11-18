@@ -15,30 +15,34 @@
 <body>
 <div class="container-fluid bg-white text-nowrap text-center p-3 pt-3 mb-1 ">
   <h2>LOGIN</h2>
+  <?php if(session()->getFlashdata('msg')):?>
+                <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+                <?php endif;?>
     <form action="<?= base_url('Welcome/check')?>" method="post" >
     <?= csrf_field(); ?>
-    <?php if(!empty(session()->getFlashdata('fail')))?>
         <div class=" d-flex justify-content-center form-group mt-5 ">
             <label for="user_name" class="text-secondary col-sm-2 col-form-label">USER NAME:</label>
             <div class="col-sm-5 max-auto">
-                <input type="text" class="form-control" id="user_name" name='user_name' placeholder="user_name">
-                <span class="text_danger"><?= isset($validation) ? display_error($validation,'user_name') : ''?></span>
+                <input type="text" class="form-control" id="user_name" name='user_name' value="<?= set_value('user_name') ?>" placeholder="user_name">
+                <?php if(isset($validation)):?>
+                    <div class='alert-alert-danger'>
+                    <?= $validation->listErrors() ?>
+                    </div>
+                    <?php endif;?>
             </div>
         </div>
         <div class="d-flex justify-content-center form-group mt-5">
             <label for="new_password" class="text-secondary col-sm-2 col-form-label">PASSWORD:</label>
             <div class="col-sm-5">
-                <input type="password" class="form-control" id="new_password" name='new_password'placeholder="Password" >
-                <span class="text_danger"><?= isset($validation) ? display_error($validation,'password') : ''?></span>
+                <input type="password" class="form-control" id="new_password" name='new_password'value="<?= set_value('new_password') ?>"placeholder="Password" >
+                <?php if(isset($validation)):?>
+                    <div class='alert-alert-danger'>
+                    <?= $validation->listErrors() ?>
+                    </div>
+                    <?php endif;?>
             </div>
         </div>
-        <div class="justify-contetnt-center form-group form-check mt-5 mb-5">
-            <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="remember" required>ADMIN USER.
-                <div class="valid-feedback">Valid.</div>
-                <div class="invalid-feedback">Check this checkbox to continue.</div>
-            </label>
-        </div>
+
         <button type="submit" class="justify-contetnt-center btn btn-primary" src="<?= base_url('Welcome\check')?>">LOGIN</button>
     </form>
 </div>

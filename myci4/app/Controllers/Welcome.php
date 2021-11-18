@@ -60,47 +60,35 @@ class Welcome extends Controller
         return view ('stud/login');
     }
     public function check()
-    {   
-        $session = session();
-        $validation = $this->validate(
+    {
+        helper(['form']);
+        $data =[];
+       if($this->request->getMethod()=='post')
+       {
+        $rules = 
         [
-            'user_name'=>
-            [
-                'rules'=>'required|valid_user_name|is_not_unique[test.user_name]',
-                'errors'=>
-                        [
-                            'required'=>'user_name is required',
-                            'valid_user_name'=>'Enter the valid user_name',
-                            'is_not_unique'=>'this user_name is not registered'
-                        ]
-            ],
-            'password'=>
-                [
-                            'rules'=>'required',
-                            'errors'=>
-                            [
-                                'required'=>'Password is required'
-                            ]
-                ]
-        ]);
-        if(!$validation){
-                    return view('stud/login',['validation'->this->validator]);
-        }
-        else
+            'user_name'=>'required',
+            'new_password'=>'required',
+        ];
+        if($this->validate($rules))
         {
-            echo'validated sucessfully';
+            $session = session();
+            $studentModel = new \App\Models\StudentModel();
+            $user_name = $this->request->getPost('user_name');
+            $new_password = $this->request->getPost('new_password');
+            $data = $studentModel->where('user_name',$user_name)->first();
+            if($data)
+            {
+                $pass = $data['new_password'];
+                $verify_pass = password_verify($new_password,$pass);
+            }
+            else
+            {
+                $session->setFlashdata('msg','wrong user name or password ');
+                echo view('stud/login',$data);
+            }
         }
-        $user_name =$this->request->getPost('user_name');
-        $new_password = $this->request->getPost('new_password');
-        $studentModel = new \App\Models\StudentModel();
-        $user_info = $studentModel->where('user_name',$user_name,)->first();
-        $check_password = Hash::check($new_password,$user_info['new_password']);
-
-        if(!$check_password)
-        {
-            session()->setFlashdata('fail','Incorrect password');
-            return redirect()->to('/welcome')->withInput();
-        }
+       }
     }
 }
 ?>

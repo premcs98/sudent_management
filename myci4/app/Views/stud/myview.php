@@ -35,7 +35,7 @@
                     <a class="nav-link" href="<?php echo base_url('welcome/signup') ?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href='<?php echo base_url('welcome/login')?>'><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                    <a class="nav-link" href='<?php echo base_url('welcome/loginnew')?>'><span class="glyphicon glyphicon-log-in"></span> Login</a>
                 </li>
             </ul>
         </div>

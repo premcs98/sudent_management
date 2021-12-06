@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use APP\Models\StudentModel;
@@ -59,6 +58,10 @@ class Welcome extends Controller
     {
         return view ('stud/login');
     }
+    public function loginnew()
+    {
+        return view('stud/loginnew');
+    }
     public function check()
     {
         helper(['form']);
@@ -76,18 +79,33 @@ class Welcome extends Controller
             $studentModel = new \App\Models\StudentModel();
             $user_name = $this->request->getPost('user_name');
             $new_password = $this->request->getPost('new_password');
+            $new_password_h = password_hash($new_password,PASSWORD_BCRYPT);
             $data = $studentModel->where('user_name',$user_name)->first();
             if($data)
             {
                 $pass = $data['new_password'];
-                $verify_pass = password_verify($new_password,$pass);
+                $verify_pass = password_verify($new_password_h,$pass);
+                if($verify_pass)
+                {
+                    echo view('stud/dashboard');
+                }
+                else
+                {
+                    $session->setFlashdata('msg','wrong password ');
+                    echo view('stud/login',$data);
+                }
             }
             else
             {
-                $session->setFlashdata('msg','wrong user name or password ');
+                $session->setFlashdata('msg','Wrong User Name ');
                 echo view('stud/login',$data);
             }
         }
+       }
+       else
+       {
+        $data['validation']=$this->validator;
+        echo view('stud/login',$data);
        }
     }
 }

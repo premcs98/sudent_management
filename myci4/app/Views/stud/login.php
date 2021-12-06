@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <button type="submit" class="justify-contetnt-center btn btn-primary" src="<?= base_url('Welcome\check')?>">LOGIN</button>
+        <button type="submit" class="justify-contetnt-center btn btn-primary mt-3" src="<?= base_url('Welcome\check')?>">LOGIN</button>
     </form>
 </div>
 </body>

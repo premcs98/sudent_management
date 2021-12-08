@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +14,7 @@
         <div class="col-12 text-center">
           <h2>LOGIN FEATURES</h2>
         </div>
-        <a  href='<?php echo base_url('student/signup')?>' class="btn btn-success">Login Button</a>
+        <a  href='<?php echo base_url('student/login')?>' class="btn btn-success">Student</a>
   </div>
 </body>
 </html>

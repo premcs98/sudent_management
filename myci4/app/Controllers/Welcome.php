@@ -15,7 +15,8 @@ class Welcome extends Controller
     }
     public function signup()
     {
-        return view ('stud/signup');
+        echo view('stud/myview');
+        return view ('stud/signupnew');
     }
     public function save()
     {
@@ -60,6 +61,7 @@ class Welcome extends Controller
     }
     public function loginnew()
     {
+        echo view('stud/myview');
         return view('stud/loginnew');
     }
     public function check()
@@ -71,7 +73,7 @@ class Welcome extends Controller
         $rules = 
         [
             'user_name'=>'required',
-            'new_password'=>'required',
+            'password'=>'required',
         ];
         if($this->validate($rules))
         {
@@ -81,6 +83,7 @@ class Welcome extends Controller
             $new_password = $this->request->getPost('new_password');
             $new_password_h = password_hash($new_password,PASSWORD_BCRYPT);
             $data = $studentModel->where('user_name',$user_name)->first();
+            var_dump($data);
             if($data)
             {
                 $pass = $data['new_password'];

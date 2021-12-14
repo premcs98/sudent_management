@@ -1,9 +1,9 @@
 <?php
 namespace App\Controllers;
 use CodeIgniter\Controller;
-use APP\Models\NewStudentModel;
+use APP\Models\StaffModel;
 use App\Libraries\Hash;
-class Student extends Controller
+class Staff extends Controller
 {
     public function index()
     {
@@ -13,7 +13,7 @@ class Student extends Controller
     public function signup()
     {
         echo view('stud/myview');
-        return view('stud/stu_signup');
+        return view('stud/staff_signup');
     }
     public function signin()
     {
@@ -33,18 +33,18 @@ class Student extends Controller
                     'dob'=>'required',
                     'religion'=>'required',
                     'caste'=>'required',
-                    'f_occupation'=>'required',
-                    'm_occupation'=>'required',
                     'nationality'=>'required',
                     'address'=>'required',
                     'r_address'=>'required',
-                    's_email'=>'required',
                     'pincode'=>'required',
-                    'academic_from'=>'required',
-                    'academic_to'=>'required',
-                    'department'=>'required',
-                    'user_name'=>'required',
-                    's_email'=>'required',
+                    'emp_email'=>'required',
+                    'emp_degree'=>'required',
+                    'emp_area_of_specilization'=>'required',
+                    'emp_sslc_percent'=>'required',
+                    'emp_hslc_percent'=>'required',
+                    'emp_degree_percent'=>'required',
+                    'emp_department'=>'required',
+                    'emp_user_name'=>'required',
                     'password'=>'required',
                     'confirm_password'=>'required'
                     
@@ -63,17 +63,18 @@ class Student extends Controller
                 $dob =$this->request->getPost('dob');
                 $religion =$this->request->getPost('religion');
                 $caste =$this->request->getPost('caste');
-                $f_occupation =$this->request->getPost('f_occupation');
-                $m_occupation =$this->request->getPost('m_occupation');
                 $nationality =$this->request->getPost('nationality');
                 $address =$this->request->getPost('address');
                 $r_address =$this->request->getPost('r_address');
                 $pincode =$this->request->getPost('pincode');
-                $academic_from =$this->request->getPost('academic_from');
-                $academic_to =$this->request->getPost('academic_to');
-                $department =$this->request->getPost('department');
-                $user_name =$this->request->getPost('user_name');
-                $s_email =$this->request->getPost('s_email');
+                $emp_email =$this->request->getPost('emp_email');
+                $emp_degree =$this->request->getPost('emp_degree');
+                $emp_area_of_specilization =$this->request->getPost('emp_area_of_specilization');
+                $emp_sslc_percent =$this->request->getPost('emp_sslc_percent');
+                $emp_hslc_percent =$this->request->getPost('emp_hslc_percent');
+                $emp_degree_percent =$this->request->getPost('emp_degree_percent');
+                $emp_department =$this->request->getPost('emp_department');
+                $emp_user_name =$this->request->getPost('emp_user_name');
                 $password =$this->request->getPost('password');
                 $confirm_password =$this->request->getPost('confirm_password');
                 $values=
@@ -90,36 +91,37 @@ class Student extends Controller
                         'dob'=>$dob,
                         'religion'=>$religion,
                         'caste'=>$caste,
-                        'f_occupation'=>$f_occupation,
-                        'm_occupation'=>$m_occupation,
                         'nationality'=>$nationality,
                         'address'=>$address,
                         'r_address'=>$r_address,
                         'pincode'=>$pincode,
-                        'academic_from'=>$academic_from,
-                        'academic_to'=>$academic_to,
-                        'department'=>$department,
-                        'user_name'=>$user_name,
-                        's_email'=>$s_email,
+                        'emp_email'=>$emp_email,
+                        'emp_degree'=>$emp_degree,
+                        'emp_area_of_specilization'=>$emp_area_of_specilization,
+                        'emp_sslc_percent'=>$emp_sslc_percent,
+                        'emp_hslc_percent'=>$emp_hslc_percent,
+                        'emp_degree_percent'=>$emp_degree_percent,
+                        'emp_department'=>$emp_department,
+                        'emp_user_name'=>$emp_user_name,
                         'password'=>password_hash($password, PASSWORD_BCRYPT),
                         'confirm_password'=>$confirm_password,
                     ];
-                $studentModel= new \App\Models\NewStudentModel();
-                $query= $studentModel->insert($values);
-                echo view('stud/login');
+                $staffModel= new \App\Models\StaffModel();
+                $query= $staffntModel->insert($values);
+                echo view('stud/staff_login');
             }
             else
             {
                 $data['validation']=$this->validator;
                 echo view('stud/myview');
-                echo view('stud/stu_signup',$data);
+                echo view('stud/staff_signup',$data);
             }
         }
     }
     public function login()
     {
         echo view('stud/myview');
-        return view('stud/stu_login');
+        return view('stud/staff_login');
     }
     public function check()
     {
@@ -135,12 +137,12 @@ class Student extends Controller
         if($this->validate($rules))
         {
             $session = session();
-            $studentModel = new \App\Models\NewStudentModel();
-            $user_name = $this->request->getPost('user_name');
+            $staffModel = new \App\Models\StaffModel();
+            $user_name = $this->request->getPost('emp_user_name');
             $password = $this->request->getPost('password');
             $password_h = $password;
             var_dump($password_h);
-            $data = $studentModel->where('user_name',$user_name)->first();
+            $data = $studentModel->where('emp_user_name',$user_name)->first();
             if($data)
             {
                 $pass = $data['password'];
@@ -156,21 +158,21 @@ class Student extends Controller
                 {
                     $session->setFlashdata('msg','wrong password ');
                     echo view('stud/myview');
-                    echo view('stud/stu_login',$data);
+                    echo view('stud/staff_login',$data);
                 }
             }
             else
             {
                 $session->setFlashdata('msg','Wrong User Name ');
                 echo view('stud/myview');
-                echo view('stud/stu_login');
+                echo view('stud/staff_login');
             }
         }
         else
        {
         $data['validation']=$this->validator;
         echo view('stud/myview');
-        echo view('stud/stu_login',$data);
+        echo view('stud/staff_login',$data);
        }
        }
     }

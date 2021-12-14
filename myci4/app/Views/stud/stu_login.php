@@ -14,7 +14,7 @@
   <h2>LOGIN</h2>
   <?php if(session()->getFlashdata('msg')):?>
                 <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
-                <?php endif;?>
+                <?php endif ?>
     <form action="<?= base_url('student/check')?>" method="post" >
     <?= csrf_field(); ?>
         <div class=" d-flex justify-content-center form-group mt-5 ">

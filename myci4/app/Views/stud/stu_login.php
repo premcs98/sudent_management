@@ -22,8 +22,8 @@
             <div class="col-sm-5 max-auto">
                 <input type="text" class="form-control" id="user_name" name='user_name' placeholder="user_name">
                 <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error = $validation->getError('user_name') ?>
                     </div>
                     <?php endif;?>
             </div>
@@ -33,8 +33,8 @@
             <div class="col-sm-5">
                 <input type="password" class="form-control" id="password" name='password'placeholder="Password" >
                 <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error = $validation->getError('password') ?>
                     </div>
                     <?php endif;?>
             </div>

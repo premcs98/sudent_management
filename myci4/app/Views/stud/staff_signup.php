@@ -13,15 +13,15 @@
         <h2>SIGN UP</h2>
         <?php if(isset($validation)):?>
         <?php endif;?>
-        <form action="<?= base_url('Student/signin')?>" method="post">
+        <form action="<?= base_url('Staff/signin')?>" method="post">
             <?= csrf_field(); ?>
             <div class=" d-flex justify-content-center form-group mt-5 ">
                 <label for="fname" class="text-secondary col-sm-2 col-form-label">FIRST NAME *</label>
                 <div class="col-sm-5">
                     <input id="fname" class="form-control" name="fname" type="text" placeholder="First Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('fname') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -31,8 +31,8 @@
                 <div class="col-sm-5">
                     <input id="mname" class="form-control" name="mname" type="text" placeholder="Middle Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('mname') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -42,8 +42,8 @@
                 <div class="col-sm-5">
                     <input id="lname" class="form-control" name="lname" type="text" placeholder="Last Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('lname') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -53,8 +53,8 @@
                 <div class="col-sm-5">
                     <input id="f_fname" class="form-control" name="f_fname" type="text" placeholder="Father-First-Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('f_fname') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -64,8 +64,8 @@
                 <div class="col-sm-5">
                     <input id="f_mname" class="form-control" name="f_mname" type="text" placeholder="Father-Middle-Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('f_mname') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -75,8 +75,8 @@
                 <div class="col-sm-5">
                     <input id="f_lname" class="form-control" name="f_lname" type="text" placeholder="Father-Last-Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('f_lname') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -86,8 +86,8 @@
                 <div class="col-sm-5">
                     <input id="m_fname" class="form-control" name="m_fname" type="text" placeholder="Mother-First-Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('m_fname') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -97,8 +97,8 @@
                 <div class="col-sm-5">
                     <input id="m_mname" class="form-control" name="m_mname" type="text" placeholder="Mother-Middle-Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('m_mname') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -108,8 +108,8 @@
                 <div class="col-sm-5">
                     <input id="m_lname" class="form-control" name="m_lname" type="text" placeholder="Mother-Last-Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('m_lname') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -118,12 +118,17 @@
                 <label for="dob"class="text-secondary col-sm-2 col-form-label">DATE OF BIRTH *</label>
                 <div class="col-sm-5">
                     <input type="date" class="form-control" id="start" name="dob" placeholder="dd/mm/yyyy" min="1947-01-01" max="2021-12-31">
+                    <?php if(isset($validation)):?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('dob') ?>
+                    </div>
+                    <?php endif;?>
                 </div>
            </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="religion" class="text-secondary col-sm-2 col-form-label">RELEGION *</label>
+                <label for="relegion" class="text-secondary col-sm-2 col-form-label">RELEGION *</label>
                 <div class="col-sm-5">
-                    <select class="form-select" id="religion" name="religion">
+                    <select class="form-select" id="religion" name="relegion">
                         <option value="">-- select one --</option>
                         <option value="Hindu">Hindu</option>
                         <option value="Muslim">Muslim</option>
@@ -131,8 +136,8 @@
                         <option value="Buddhism">Buddhism</option>
                     </select>
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('relegion') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -142,16 +147,16 @@
                 <div class="col-sm-5">
                     <input id="caste" class="form-control" name="caste" type="text" placeholder="Caste" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('caste') ?>
                     </div>
                     <?php endif;?>
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="nationality" class="text-secondary col-sm-2 col-form-label">NATIONALITY  *</label>
+                <label for="nationaliy" class="text-secondary col-sm-2 col-form-label">NATIONALITY  *</label>
                 <div class="col-sm-5">
-                    <select class="form-select" name="nationality">
+                    <select class="form-select" name="nationaliy">
                         <option value="">-- select one --</option>
                         <option value="afghan">Afghan</option>
                         <option value="albanian">Albanian</option>
@@ -347,8 +352,8 @@
                         <option value="zimbabwean">Zimbabwean</option>
                     </select>
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('nationaliy') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -358,8 +363,8 @@
                 <div class="col-sm-5">
                     <input id="address" class="form-control" name="address" type="text" placeholder="Address" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('address') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -369,58 +374,93 @@
                 <div class="col-sm-5">
                     <input id="r_address" class="form-control" name="r_address" type="text" placeholder="Resedential Address" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('r_address') ?>
                     </div>
                     <?php endif;?>
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="email" class="text-secondary col-sm-2 col-form-label">EMAIL *</label>
+                <label for="emp_email" class="text-secondary col-sm-2 col-form-label">EMAIL *</label>
                 <div class="col-sm-5">
-                    <input id="s_email" class="form-control" name="s_email" type="email" placeholder="Email" /> 
+                    <input id="emp_email" class="form-control" name="emp_email" type="email" placeholder="Email" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('emp_email') ?>
                     </div>
                     <?php endif;?>
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="mname" class="text-secondary col-sm-2 col-form-label">ZIP CODE *</label>
+                <label for="pincode" class="text-secondary col-sm-2 col-form-label">ZIP CODE *</label>
                 <div class="col-sm-5">
                     <input id="pincode" class="form-control" name="pincode" type="text" placeholder="ZIP CODE" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('pincode') ?>
                     </div>
                     <?php endif;?>
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="academic_from" class="text-secondary col-sm-2 col-form-label">ACADEMIC YEAR *</label>
-                <div class="form-group col-sm-2">
-                    <input id="academic_from" class="form-control" name="academic_from" type="number"  min='1990' max='2099' placeholder=" FROM" />
-                    <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
-                    </div>
-                    <?php endif;?>
-                </div>
-                <label for="academic_to" class="text-secondary form-group col-sm-1 col-form-label">TO *</label>
-                <div class="form-group col-sm-2">
-                    <input id="academic_to" class="form-control" name="academic_to" type="number"  min='1990' max='2099' placeholder="  TO"/>
-                    <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
-                    </div>
-                    <?php endif;?>
-                </div>
-            </div>
-            <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="first_name" class="text-secondary col-sm-2 col-form-label">DEPARTMENT *</label>
+                <label for="emp_degree" class="text-secondary col-sm-2 col-form-label">DEGREE COMPLETED*</label>
                 <div class="col-sm-5">
-                <select class="form-select" id="relegion" name="department">
+                    <input id="emp_degree" class="form-control" name="emp_degree" type="text" placeholder="DEGREE " /> 
+                    <?php if(isset($validation)):?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('emp_degree') ?>
+                    </div>
+                    <?php endif;?>
+                </div>
+            </div>
+            <div class=" d-flex justify-content-center form-group mt-5 ">
+                <label for="emp_area_of_specalization" class="text-secondary col-sm-2 col-form-label">AREA OF SPECIALIZATION*</label>
+                <div class="col-sm-5">
+                    <input id="emp_area_of_specalization" class="form-control" name="emp_area_of_specalization" type="text" placeholder="AREA OF SPECELIZATION " /> 
+                    <?php if(isset($validation)):?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('emp_area_of_specalization') ?>
+                    </div>
+                    <?php endif;?>
+                </div>
+            </div>
+            <div class=" d-flex justify-content-center form-group mt-5 ">
+                <label for="emp_sslc_percent" class="text-secondary col-sm-2 col-form-label">10'th PRERCENTAGE %*</label>
+                <div class="col-sm-5">
+                    <input id="emp_sslc_percent" class="form-control" name="emp_sslc_percent" type="text" placeholder="10'th PRERCENTAGE %" /> 
+                    <?php if(isset($validation)):?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('emp_sslc_percent') ?>
+                    </div>
+                    <?php endif;?>
+                </div>
+            </div>
+            <div class=" d-flex justify-content-center form-group mt-5 ">
+                <label for="emp_hslc_percent" class="text-secondary col-sm-2 col-form-label">12'th PRERCENTAGE %*</label>
+                <div class="col-sm-5">
+                    <input id="emp_hslc_percent" class="form-control" name="emp_hslc_percent" type="text" placeholder="12'th PRERCENTAGE %" /> 
+                    <?php if(isset($validation)):?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error= $validation->getError('emp_hslc_percent') ?>
+                    </div>
+                    <?php endif;?>
+                </div>
+            </div>
+            <div class=" d-flex justify-content-center form-group mt-5 ">
+                <label for="emp_degree_percent" class="text-secondary col-sm-2 col-form-label">CGPA %*</label>
+                <div class="col-sm-5">
+                    <input id="emp_degree_percent" class="form-control" name="emp_degree_percent" type="text" placeholder="CGPA %" /> 
+                    <?php if(isset($validation)):?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('emp_degree_percent') ?>
+                    </div>
+                    <?php endif;?>
+                </div>
+            </div>
+            <div class=" d-flex justify-content-center form-group mt-5 ">
+                <label for="emp_department" class="text-secondary col-sm-2 col-form-label">DEPARTMENT *</label>
+                <div class="col-sm-5">
+                <select class="form-select" id="emp_department" name="emp_department">
                         <option value="">-- select one --</option>
                         <option value="CSE">CSE</option>
                         <option value="ECE">ECE</option>
@@ -428,36 +468,19 @@
                         <option value="MECH">MECH</option>
                     </select>
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('emp_department') ?>
                     </div>
                     <?php endif;?>
                 </div>
             </div>
             <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="first_name" class="text-secondary col-sm-2 col-form-label">SECTION *</label>
+                <label for="emp_user_name" class="text-secondary col-sm-2 col-form-label">USER NAME *</label>
                 <div class="col-sm-5">
-                <select class="form-select" id="relegion" name="section">
-                        <option value="">-- select one --</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
-                    </select>
+                    <input id="emp_user_name" class="form-control" name="emp_user_name" type="text" placeholder="User_Name" /> 
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
-                    </div>
-                    <?php endif;?>
-                </div>
-            </div>
-            <div class=" d-flex justify-content-center form-group mt-5 ">
-                <label for="user_name" class="text-secondary col-sm-2 col-form-label">USER NAME *</label>
-                <div class="col-sm-5">
-                    <input id="user_name" class="form-control" name="user_name" type="text" placeholder="User_Name" /> 
-                    <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('emp_user_name') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -467,8 +490,8 @@
                 <div class="col-sm-5">
                     <input id="password" class="form-control" name="password" placeholder="New-Password" type="password"/>
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('password') ?>
                     </div>
                     <?php endif;?>
                 </div>
@@ -478,13 +501,13 @@
                 <div class="col-sm-5">
                     <input name="confirm_password" class="form-control" id="confirm_password" type="password" placeholder="Confirm-Password"/>
                     <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error=$validation->getError('confirm_password') ?>
                     </div>
                     <?php endif;?>
                 </div>
             </div>
-            <input type="submit" name="submitinfo" id="submitsignup" src="<?= base_url('Student/signin')?>"alt="Sign Up Now" value="Submit" class="justify-contetnt-center btn btn-primary" />
+            <input type="submit" name="submitinfo" id="submitsignup" src="<?= base_url('Staff/signin')?>"alt="Sign Up Now" value="Submit" class="justify-contetnt-center btn btn-primary" />
         </form>
     </div>
 </body>

@@ -18,32 +18,32 @@
   <?php if(session()->getFlashdata('msg')):?>
                 <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
                 <?php endif;?>
-    <form action="<?= base_url('Welcome/check')?>" method="post" >
+    <form action="<?= base_url('Staff/check')?>" method="post" >
     <?= csrf_field(); ?>
         <div class=" d-flex justify-content-center form-group mt-5 ">
-            <label for="user_name" class="text-secondary col-sm-2 col-form-label">USER NAME:</label>
+            <label for="emp_user_name" class="text-secondary col-sm-2 col-form-label">USER NAME:</label>
             <div class="col-sm-5 max-auto">
-                <input type="text" class="form-control" id="user_name" name='user_name' value="<?= set_value('user_name') ?>" placeholder="user_name">
+                <input type="text" class="form-control" id="emp_user_name" name='emp_user_name'placeholder="user_name">
                 <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?=$error = $validation->getError('emp_user_name') ?>
                     </div>
                     <?php endif;?>
             </div>
         </div>
         <div class="d-flex justify-content-center form-group mt-5">
-            <label for="new_password" class="text-secondary col-sm-2 col-form-label">PASSWORD:</label>
+            <label for="password" class="text-secondary col-sm-2 col-form-label">PASSWORD:</label>
             <div class="col-sm-5">
-                <input type="password" class="form-control" id="new_password" name='new_password'value="<?= set_value('new_password') ?>"placeholder="Password" >
+                <input type="password" class="form-control" id="password" name='password' placeholder="Password" >
                 <?php if(isset($validation)):?>
-                    <div class='alert-alert-danger'>
-                    <?= $validation->listErrors() ?>
+                    <div class='alert alert-danger mt-2'>
+                    <?= $error = $validation->getError('password') ?>
                     </div>
                     <?php endif;?>
             </div>
         </div>
 
-        <button type="submit" class="justify-contetnt-center btn btn-primary mt-3" src="<?= base_url('Welcome\check')?>">LOGIN</button>
+        <button type="submit" class="justify-contetnt-center btn btn-primary mt-3" src="<?= base_url('Staff\check')?>">LOGIN</button>
     </form>
 </div>
 </body>

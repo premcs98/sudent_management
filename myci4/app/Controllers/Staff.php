@@ -31,15 +31,15 @@ class Staff extends Controller
                     'm_mname'=>'required',
                     'm_lname'=>'required',
                     'dob'=>'required',
-                    'religion'=>'required',
+                    'relegion'=>'required',
                     'caste'=>'required',
-                    'nationality'=>'required',
+                    'nationaliy'=>'required',
                     'address'=>'required',
                     'r_address'=>'required',
                     'pincode'=>'required',
                     'emp_email'=>'required',
                     'emp_degree'=>'required',
-                    'emp_area_of_specilization'=>'required',
+                    'emp_area_of_specalization'=>'required',
                     'emp_sslc_percent'=>'required',
                     'emp_hslc_percent'=>'required',
                     'emp_degree_percent'=>'required',
@@ -61,15 +61,15 @@ class Staff extends Controller
                 $m_mname =$this->request->getPost('m_mname');
                 $m_lname =$this->request->getPost('m_lname');
                 $dob =$this->request->getPost('dob');
-                $religion =$this->request->getPost('religion');
+                $relegion =$this->request->getPost('relegion');
                 $caste =$this->request->getPost('caste');
-                $nationality =$this->request->getPost('nationality');
+                $nationaliy =$this->request->getPost('nationaliy');
                 $address =$this->request->getPost('address');
                 $r_address =$this->request->getPost('r_address');
                 $pincode =$this->request->getPost('pincode');
                 $emp_email =$this->request->getPost('emp_email');
                 $emp_degree =$this->request->getPost('emp_degree');
-                $emp_area_of_specilization =$this->request->getPost('emp_area_of_specilization');
+                $emp_area_of_specalization =$this->request->getPost('emp_area_of_specalization');
                 $emp_sslc_percent =$this->request->getPost('emp_sslc_percent');
                 $emp_hslc_percent =$this->request->getPost('emp_hslc_percent');
                 $emp_degree_percent =$this->request->getPost('emp_degree_percent');
@@ -89,15 +89,15 @@ class Staff extends Controller
                         'm_mname'=>$m_mname,
                         'm_lname'=>$m_lname,
                         'dob'=>$dob,
-                        'religion'=>$religion,
+                        'relegion'=>$relegion,
                         'caste'=>$caste,
-                        'nationality'=>$nationality,
+                        'nationaliy'=>$nationaliy,
                         'address'=>$address,
                         'r_address'=>$r_address,
                         'pincode'=>$pincode,
                         'emp_email'=>$emp_email,
                         'emp_degree'=>$emp_degree,
-                        'emp_area_of_specilization'=>$emp_area_of_specilization,
+                        'emp_area_of_specalization'=>$emp_area_of_specalization,
                         'emp_sslc_percent'=>$emp_sslc_percent,
                         'emp_hslc_percent'=>$emp_hslc_percent,
                         'emp_degree_percent'=>$emp_degree_percent,
@@ -107,8 +107,8 @@ class Staff extends Controller
                         'confirm_password'=>$confirm_password,
                     ];
                 $staffModel= new \App\Models\StaffModel();
-                $query= $staffntModel->insert($values);
-                echo view('stud/staff_login');
+                $query= $staffModel->insert($values);
+                echo view('stud/login');
             }
             else
             {
@@ -120,8 +120,7 @@ class Staff extends Controller
     }
     public function login()
     {
-        echo view('stud/myview');
-        return view('stud/staff_login');
+        return view('stud/login');
     }
     public function check()
     {
@@ -131,7 +130,7 @@ class Staff extends Controller
        {
         $rules = 
         [
-            'user_name'=>'required',
+            'emp_user_name'=>'required',
             'password'=>'required',
         ];
         if($this->validate($rules))
@@ -140,14 +139,13 @@ class Staff extends Controller
             $staffModel = new \App\Models\StaffModel();
             $user_name = $this->request->getPost('emp_user_name');
             $password = $this->request->getPost('password');
-            $password_h = $password;
-            var_dump($password_h);
-            $data = $studentModel->where('emp_user_name',$user_name)->first();
+            var_dump($password);
+            $data = $staffModel->where('emp_user_name',$user_name)->first();
             if($data)
             {
                 $pass = $data['password'];
                 var_dump($pass);
-                $verify_pass = password_verify($password_h,$pass);
+                $verify_pass = password_verify($password,$pass);
                 var_dump($verify_pass);
                 if($verify_pass)
                 {
@@ -157,22 +155,19 @@ class Staff extends Controller
                 else
                 {
                     $session->setFlashdata('msg','wrong password ');
-                    echo view('stud/myview');
-                    echo view('stud/staff_login',$data);
+                    echo view('stud/login',$data);
                 }
             }
             else
             {
                 $session->setFlashdata('msg','Wrong User Name ');
-                echo view('stud/myview');
-                echo view('stud/staff_login');
+                echo view('stud/login');
             }
         }
         else
        {
         $data['validation']=$this->validator;
-        echo view('stud/myview');
-        echo view('stud/staff_login',$data);
+        echo view('stud/login',$data);
        }
        }
     }
